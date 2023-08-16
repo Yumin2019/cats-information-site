@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -22,37 +23,31 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
-  getAllCat() {
-    // throw new HttpException('api broken', 401);
-    console.log('hello world');
-    console.log('hello world');
-    console.log('hello world');
-    return 'asdsdsdsdsll cat';
-  }
-
-  @Get(':id')
-  getOneCat(@Param('id', ParseIntPipe) param): string {
-    console.log(param);
-    return 'get one cat';
+  getCurrentCat() {
+    return 'getCurrentCat';
   }
 
   @Post()
-  createCat() {
-    return 'create cat';
+  async signUp(@Body() body) {
+    console.log(body);
+    console.log(process.env.MODE);
+    console.log(process.env.MONGODB_URL);
+
+    return 'signup';
   }
 
-  @Put(':id')
-  updateCat() {
-    return 'update cat';
+  @Post('login')
+  login() {
+    return 'login';
   }
 
-  @Patch(':id')
-  updatePartialCat() {
-    return 'update partial cat';
+  @Post('logout')
+  logout() {
+    return 'logout';
   }
 
-  @Delete(':id')
-  deleteCat() {
-    return 'delete cat';
+  @Post('upload/cats')
+  uploadCatImage() {
+    return 'uploadCatImage';
   }
 }
