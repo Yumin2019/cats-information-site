@@ -10,13 +10,17 @@ import { AuthService } from 'src/auth/auth.service';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 import { JwtStrategy } from 'src/auth/jwt/jwt.strategy';
 import { MulterModule } from '@nestjs/platform-express';
+import { Comments, CommentsScheme } from 'src/comments/comments.schema';
 
 @Module({
   imports: [
     MulterModule.register({
       dest: './upload',
     }),
-    MongooseModule.forFeature([{ name: Cat.name, schema: CatSchema }]),
+    MongooseModule.forFeature([
+      { name: Comments.name, schema: CommentsScheme },
+      { name: Cat.name, schema: CatSchema },
+    ]),
   ],
   controllers: [CatsController],
   providers: [
